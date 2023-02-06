@@ -2,6 +2,7 @@ package com.vladaver.data_processing.service.impl
 
 import com.vladaver.data_processing.schemas.Schemas.activitiesSchema
 import com.vladaver.data_processing.service.UserActivitiesService
+import com.vladaver.data_processing.utils.ReadUtils.readDataset
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.{DataFrame, SQLContext}
 
@@ -9,7 +10,7 @@ class UserActivitiesServiceImpl(implicit sc: SQLContext) extends UserActivitiesS
 
   override def calculateActivitiesStats(pathToDataset: String): DataFrame = {
 
-    val activitiesData = readDataset(pathToDataset = pathToDataset)
+    val activitiesData = readDataset(path = pathToDataset, schema = activitiesSchema)
     val totalActivitiesSplitedByTime = getTotalActivitiesSplitedByTime(data = activitiesData)
     val splitedActivities = splitActivitiesByWorkAndNotWork(data = totalActivitiesSplitedByTime)
     val aggregatedActivities = aggregateActiviesByWorkAndTotal(data = splitedActivities)
@@ -86,13 +87,6 @@ class UserActivitiesServiceImpl(implicit sc: SQLContext) extends UserActivitiesS
         "inet_traffic_activity", "sum_sms_in_activity", "sum_sms_out_activity", "sum_call_in_activity",
         "sum_call_out_activity", "sum_inet_traffic_activity", "time_interval")
       .orderBy("square_id")
-  }
-
-  private def readDataset(pathToDataset: String): DataFrame = {
-    sc.read
-      .options(Map("sep" -> "\t", "header" -> "false"))
-      .schema(activitiesSchema)
-      .csv(path = pathToDataset)
   }
 }
 

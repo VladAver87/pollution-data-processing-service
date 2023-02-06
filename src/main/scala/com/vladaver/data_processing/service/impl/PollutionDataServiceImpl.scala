@@ -1,16 +1,14 @@
 package com.vladaver.data_processing.service.impl
 
-import com.vladaver.data_processing.schemas.Schemas.{activitiesSchema, pollutionLegendSchema, pollutionMISchema}
+import com.vladaver.data_processing.schemas.Schemas.{pollutionLegendSchema, pollutionMISchema}
 import com.vladaver.data_processing.service.PollutionDataService
 import com.vladaver.data_processing.utils.ReadUtils.readDataset
-import org.apache.spark.sql
-import org.apache.spark.sql.functions.{broadcast, column, date_format, days, decode, encode, from_unixtime, lit, month, sum, to_timestamp}
-import org.apache.spark.sql.types.StructType
+import org.apache.spark.sql.functions._
 import org.apache.spark.sql.{DataFrame, SQLContext}
 
 class PollutionDataServiceImpl(implicit sc: SQLContext) extends PollutionDataService {
 
-  override def calculatePollutionStats(pathToLegend: String, pathToMeasureData: String): Unit = {
+  override def calculatePollutionStats(pathToLegend: String, pathToMeasureData: String): DataFrame = {
 
     val pollutionLegendDF = preparePollutionLegendDataframe(pathToLegend)
     val miDF = prepareMiDataFrame(pathToMeasureData)

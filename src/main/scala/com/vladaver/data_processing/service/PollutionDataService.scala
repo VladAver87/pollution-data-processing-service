@@ -1,6 +1,7 @@
 package com.vladaver.data_processing.service
 
-trait PollutionDataService {
+import org.apache.spark.sql.DataFrame
 
-  def calculatePollutionStats(pathToLegend: String, pathToMeasureData: String): Unit
+trait PollutionDataService {
+  def calculatePollutionStats(pathToLegend: String, pathToMeasureData: String): DataFrame
 }

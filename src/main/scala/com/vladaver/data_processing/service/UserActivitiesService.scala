@@ -4,5 +4,5 @@ import org.apache.spark.sql.DataFrame
 
 trait UserActivitiesService {
 
-  def calculateActivitiesStats(pathToDataset: String): DataFrame
+  def calculateActivitiesStats(activitiesData: DataFrame): DataFrame
 }

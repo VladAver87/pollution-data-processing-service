@@ -1,16 +1,13 @@
 package com.vladaver.data_processing.service.impl
 
-import com.vladaver.data_processing.schemas.Schemas.activitiesSchema
 import com.vladaver.data_processing.service.UserActivitiesService
-import com.vladaver.data_processing.utils.ReadUtils.readDataset
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.{DataFrame, SQLContext}
 
 class UserActivitiesServiceImpl(implicit sc: SQLContext) extends UserActivitiesService {
 
-  override def calculateActivitiesStats(pathToDataset: String): DataFrame = {
+  override def calculateActivitiesStats(activitiesData: DataFrame): DataFrame = {
 
-    val activitiesData = readDataset(path = pathToDataset, schema = activitiesSchema)
     val totalActivitiesSplitedByTime = getTotalActivitiesSplitedByTime(data = activitiesData)
     val splitedActivities = splitActivitiesByWorkAndNotWork(data = totalActivitiesSplitedByTime)
     val aggregatedActivities = aggregateActiviesByWorkAndTotal(data = splitedActivities)

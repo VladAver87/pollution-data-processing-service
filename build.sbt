@@ -15,6 +15,8 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-sql" % sparkVersion % Compile,
   "com.typesafe" % "config" % "1.4.2",
   "org.json4s" %% "json4s-native" % json4sVersion,
+  "org.liquibase" % "liquibase-core" % "3.0.5",
+  "org.postgresql" % "postgresql" % "42.5.0",
   "com.holdenkarau" %% "spark-testing-base" % "3.3.0_1.3.0" % Test,
-  "org.typelevel" %% "discipline-scalatest" % "2.1.5"
+  "org.typelevel" %% "discipline-scalatest" % "2.1.5" % Test
 )

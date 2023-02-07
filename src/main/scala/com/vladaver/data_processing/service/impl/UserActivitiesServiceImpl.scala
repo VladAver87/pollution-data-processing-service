@@ -19,7 +19,7 @@ class UserActivitiesServiceImpl(implicit sc: SQLContext) extends UserActivitiesS
         column("total_worktime_activity").between(
           column("avg_activity"), column("max_activity")), true
       ).otherwise(false))
-      .drop("total_worktime_activity", "total_activity")
+      .drop("total_worktime_activity", "total_activity", "max_activity", "min_activity", "avg_activity")
   }
 
   private def aggregateActiviesByWorkAndTotal(data: DataFrame): DataFrame = {

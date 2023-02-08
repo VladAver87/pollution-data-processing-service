@@ -95,7 +95,7 @@ cellId (Square id)
 |3        |false         |
 ```
 ###### Stage 2
-[Парсинд координат](https://github.com/VladAver87/pollution-data-processing-service/blob/main/src/main/scala/com/vladaver/data_processing/service/GeoService.scala)
+[Парсинд координат](https://github.com/VladAver87/pollution-data-processing-service/blob/main/src/main/scala/com/vladaver/data_processing/service/impl/GeoServiceImpl.scala)
 [Общий pipeline](https://github.com/VladAver87/pollution-data-processing-service/blob/main/src/main/scala/com/vladaver/data_processing/Pipeline.scala)
 * Объединяем с картой-сеткой для ассоциации районов и их координат
 ```

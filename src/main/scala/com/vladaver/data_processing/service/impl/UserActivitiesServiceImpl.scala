@@ -10,8 +10,7 @@ class UserActivitiesServiceImpl(implicit sc: SQLContext) extends UserActivitiesS
 
     val totalActivitiesSplitedByTime = getTotalActivitiesSplitedByTime(data = activitiesData)
     val splitedActivities = splitActivitiesByWorkAndNotWork(data = totalActivitiesSplitedByTime)
-    val aggregatedActivities = aggregateActiviesByWorkAndTotal(data = splitedActivities)
-    aggregatedActivities
+    aggregateActiviesByWorkAndTotal(data = splitedActivities)
       .withColumn("max_activity", max(column("total_activity")).over())
       .withColumn("min_activity", min(column("total_activity")).over())
       .withColumn("avg_activity", avg(column("total_activity")).over())

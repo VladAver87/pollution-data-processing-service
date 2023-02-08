@@ -48,7 +48,7 @@ class JoinByCoordinatesTest extends AnyFlatSpec with Matchers with DataFrameSuit
       .map(_.toFloat)))
       .toDF("square_id", "coordinates")
 
-    val pollutionSensorsDF = Seq((5841, 1.0.toLong, "Milano - P.zza  Zavattari", 45.359000, 9.012000, "Carbon Monoxide"))
+    val pollutionSensorsDF = Seq((5841, 1.0.toLong, "Milano - P.zza  Zavattari", 45.459000, 9.112000, "Carbon Monoxide"))
       .toDF("sensor_id", "sum_measurement", "sensor_street_name", "sensor_lat", "sensor_long", "sensor_type")
 
     val expectedDF = sqlContext.createDataFrame(sqlContext.sparkContext.emptyRDD[Row], emptyDFschema)

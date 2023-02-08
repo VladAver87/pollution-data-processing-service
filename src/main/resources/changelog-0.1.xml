@@ -6,21 +6,51 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="0.1-auth" author="andy.sumskoy@gmail.com">
-        <createTable tableName="users">
-            <column name="user_id" type="int" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="username" type="varchar(255)">
-                <constraints unique="true" nullable="false"/>
-            </column>
-            <column name="password" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="enabled" type="boolean" defaultValueBoolean="true">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
+    <changeSet id="changelog-0.1" author="v.averyanov">
+        <sql>
+            drop table if exists Top5pollutedWorkingSquares;
+            drop table if exists Top5pollutedNonWorkingSquares;
+            drop table if exists Top5cleanNonWorkingSquares;
+            drop table if exists Top5cleanWorkingSquares;
+            drop table if exists UndefinedSquares;
+
+            create table Top5pollutedWorkingSquares (
+            square_id smallint not null primary key,
+            coordinates numeric(9, 7)[] not null,
+            total_concentration integer not null,
+            sensors_count smallint not null,
+            sensors_type varchar not null
+            );
+
+            create table Top5pollutedNonWorkingSquares (
+            square_id smallint not null primary key,
+            coordinates numeric(9, 7)[] not null,
+            total_concentration integer not null,
+            sensors_count smallint not null,
+            sensors_type varchar not null
+            );
+
+            create table Top5cleanNonWorkingSquares (
+            square_id smallint not null primary key,
+            coordinates numeric(9, 7)[] not null,
+            total_concentration integer not null,
+            sensors_count smallint not null,
+            sensors_type varchar not null
+            );
+
+            create table Top5cleanWorkingSquares (
+            square_id smallint not null primary key,
+            coordinates numeric(9, 7)[] not null,
+            total_concentration integer not null,
+            sensors_count smallint not null,
+            sensors_type varchar not null
+            );
+
+            create table UndefinedSquares (
+            square_id smallint not null primary key,
+            coordinates numeric(9, 7)[] not null
+            );
+        </sql>
     </changeSet>
 
 </databaseChangeLog>

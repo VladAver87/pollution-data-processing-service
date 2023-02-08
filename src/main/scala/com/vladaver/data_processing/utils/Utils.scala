@@ -37,10 +37,10 @@ object Utils {
   }
 
   def isPointInSquare(square: Array[String], pointLat: String, pointLong: String): Boolean = {
-      val sqPoint1 = Point(square(0).toDouble, square(1).toDouble)
-      val sqPoint2 = Point(square(2).toDouble, square(3).toDouble)
-      val sqPoint3 = Point(square(4).toDouble, square(5).toDouble)
-      val sqPoint4 = Point(square(6).toDouble, square(7).toDouble)
+      val sqPoint1 = Point(square(0).toDouble - 0.0003, square(1).toDouble + 0.0002)
+      val sqPoint2 = Point(square(2).toDouble + 0.0003, square(3).toDouble + 0.0002)
+      val sqPoint3 = Point(square(4).toDouble + 0.0003, square(5).toDouble - 0.0002)
+      val sqPoint4 = Point(square(6).toDouble - 0.0003, square(7).toDouble - 0.0002)
 
       val givenPoint = Point(pointLong.toDouble, pointLat.toDouble)
 
